@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private GameObject playButton;
     [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject quit;
 
     private int score;
     public int Score => score;
@@ -35,6 +37,9 @@ public class GameManager : MonoBehaviour
 
         playButton.SetActive(false);
         gameOver.SetActive(false);
+        settingsMenu.SetActive(false);
+        quit.SetActive(false);
+
 
         Time.timeScale = 1f;
         player.enabled = true;
@@ -45,11 +50,24 @@ public class GameManager : MonoBehaviour
             Destroy(pipes[i].gameObject);
         }
     }
+    
+    public void Settings()
+    {
+        settingsMenu.SetActive(true);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("You have quit");
+    }
 
     public void GameOver()
     {
         playButton.SetActive(true);
         gameOver.SetActive(true);
+        settingsMenu.SetActive(true);
+        quit.SetActive(true);
 
         Pause();
     }
